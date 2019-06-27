@@ -17,7 +17,7 @@ use Application\Producto;
 
 
 Route::resource('/', 'ProductoController');
-
+Route::resource('/productos', 'ProductoController');
 //ELIMINAR!!!!
 Route::get('/publicaciones', function () {
     $productos = Producto::all(); // Lista de todos los productos
