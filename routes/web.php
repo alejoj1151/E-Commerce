@@ -15,11 +15,8 @@
 use Application\Producto;
 //
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::resource('/productos', 'ProductoController');
+Route::resource('/', 'ProductoController');
 
 //ELIMINAR!!!!
 Route::get('/publicaciones', function () {

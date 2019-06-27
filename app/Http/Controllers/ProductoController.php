@@ -59,8 +59,9 @@ class ProductoController extends Controller
             // Guardar Imagen si el producto se registró exitosamente
             $file->move(public_path().'/imagenes/', $imagen);
             //
-            
-            return 'Producto registrado';
+
+            $productos = Producto::all(); // Lista de todos los productos
+            return view('perfil.publicaciones', compact('productos'));
 
         } catch (Exception $e) {
             report($e);
