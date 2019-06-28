@@ -47,7 +47,7 @@ class ProductoController extends Controller
             $validacion = $request -> validate([
                 'nombre' => 'required|string',
                 'precio' => 'required|integer',
-                'tipo' => 'required|in:Tecnolagía,Ropa,Calzado,Hogar',
+                'tipo' => 'required|in:Tecnolagia,Ropa,Calzado,Hogar',
                 'stock' => 'required|integer'
             ]);
 
@@ -74,7 +74,6 @@ class ProductoController extends Controller
     
             return e;
         }
-        //return $request->all(); //Obtener json
     }
 
     /**
@@ -120,7 +119,7 @@ class ProductoController extends Controller
         $validacion = $request -> validate([
             'nombre' => 'required|string',
             'precio' => 'required|integer',
-            'tipo' => 'required|in:Tecnolagía,Ropa,Calzado,Hogar',
+            'tipo' => 'required|in:Tecnolagia,Ropa,Calzado,Hogar',
             'stock' => 'required|integer'
         ]);
         
@@ -129,9 +128,8 @@ class ProductoController extends Controller
         // Guardar Imagen si el producto se registró exitosamente
         $file->move(public_path().'/imagenes/', $imagen);
         //
-
-        $productos = Producto::all(); // Lista de todos los productos
-        return view('productos.index', compact('productos'));
+        redirect('/publicaciones');
+        return redirect()->route('productos.index');
     }
 
     /**

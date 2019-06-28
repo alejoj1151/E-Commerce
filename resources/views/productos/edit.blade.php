@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label for="Categoria">Tipo</label>
                         <select type="text" class="form-control" name="tipo" value="{{$producto->categoria}}" required>
-                            <option type="text">Tecnología</option>
+                            <option type="text">Tecnologia</option>
                             <option type="text">Ropa</option>
                             <option type="text">Calzado</option>
                             <option type="text">Hogar</option>

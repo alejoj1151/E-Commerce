@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label for="Categoria">Tipo</label>
                         <select type="text" class="form-control" name="tipo">
-                            <option type="text">Tecnología</option>
+                            <option type="text">Tecnologia</option>
                             <option type="text">Ropa</option>
                             <option type="text">Calzado</option>
                             <option type="text">Hogar</option>
@@ -39,7 +39,7 @@
 
                     <div class="form-group">
                         <label for="Desc">Descripción</label>
-                        <textarea type="text" class="form-control" name="descripcion" rows="5" required></textarea>
+                        <textarea type="text" class="form-control" name="descripcion" rows="5"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="imagen">Imágen</label>
@@ -50,14 +50,11 @@
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalBack">Regresar</a>
                         </div>
                         <div class="col d-flex justify-content-start">
-                            <button type="submit" class="btn btn-primary">Publicar</button>
+                            <button type="submit" class="btn btn-primary" href="#">Publicar</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-    
     </form>
-        
- 
 @endsection
