@@ -36,7 +36,7 @@
                         <td>{{$producto->stock}} Unidades</td>
                     @endif
                     
-                    <td><a href="#" class="btn btn-primary">Editar producto</a></td>
+                <td><a href="/productos/{{$producto->slug}}/edit" class="btn btn-primary">Editar producto</a></td>
                     <td>
                         <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">Eliminar producto</a>
                     </td>

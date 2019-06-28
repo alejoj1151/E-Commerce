@@ -25,7 +25,7 @@
                     
                     <div class="form-group">
                         <label for="Categoria">Tipo</label>
-                        <select type="text" class="form-control" name="categoria">
+                        <select type="text" class="form-control" name="tipo">
                             <option type="text">Tecnología</option>
                             <option type="text">Ropa</option>
                             <option type="text">Calzado</option>
@@ -34,11 +34,11 @@
                     </div>
                     <div class="form-group">
                         <label for="Stock">Stock</label>
-                        <input type="text" class="form-control" name="stock" required>
+                        <input type="number" class="form-control" name="stock" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="Desc">Descripción (Opcional)</label>
+                        <label for="Desc">Descripción</label>
                         <textarea type="text" class="form-control" name="descripcion" rows="5" required></textarea>
                     </div>
                     <div class="form-group">

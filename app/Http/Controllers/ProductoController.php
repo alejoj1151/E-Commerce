@@ -44,16 +44,22 @@ class ProductoController extends Controller
                 $imagen = time().$file->getClientOriginalName();
             }
             //
+            $validacion = $request -> validate([
+                'nombre' => 'required|string',
+                'precio' => 'required|integer',
+                'tipo' => 'required|in:Tecnolagía,Ropa,Calzado,Hogar',
+                'stock' => 'required|integer'
+            ]);
 
             $producto = new Producto();
 
             $producto -> nombre       = $request->input('nombre');
             $producto -> precio       = $request->input('precio');
-            $producto -> tipo         = $request->input('categoria');
+            $producto -> tipo         = $request->input('tipo');
             $producto -> stock        = $request->input('stock');
             $producto -> descripcion  = $request->input('descripcion');
             $producto -> imagen       = $imagen;
-
+            $producto -> slug         = time().Str_slug($producto->nombre);
             $producto -> save();
 
             // Guardar Imagen si el producto se registró exitosamente
@@ -88,9 +94,9 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Producto $producto)
     {
-        //
+        return view('productos.edit', compact('producto'));
     }
 
     /**
@@ -100,9 +106,32 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Producto $producto)
     {
+        $producto->fill($request->except('imagen'));
+
+        // Comprobar Imagen Cargada
+        if($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $imagen = time().$file->getClientOriginalName();
+        }
+        $producto -> imagen       = $imagen;
         //
+        $validacion = $request -> validate([
+            'nombre' => 'required|string',
+            'precio' => 'required|integer',
+            'tipo' => 'required|in:Tecnolagía,Ropa,Calzado,Hogar',
+            'stock' => 'required|integer'
+        ]);
+        
+        $producto->save();
+
+        // Guardar Imagen si el producto se registró exitosamente
+        $file->move(public_path().'/imagenes/', $imagen);
+        //
+
+        $productos = Producto::all(); // Lista de todos los productos
+        return view('productos.index', compact('productos'));
     }
 
     /**
