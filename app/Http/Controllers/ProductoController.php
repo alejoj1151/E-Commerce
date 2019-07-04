@@ -136,8 +136,14 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Producto $producto)
     {
-        //
+        $file_path = public_path().'/imagenes/'.$producto -> imagen;
+        \File::delete($file_path);
+        $producto->delete();
+        $productos = Producto::all(); // Lista de todos los productos
+        $message = 'Producto eliminado satisfactoriamente';
+        //return view('perfil.publicaciones',compact('productos'));
+        return 'deleted';
     }
 }
