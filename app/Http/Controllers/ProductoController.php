@@ -47,17 +47,14 @@ class ProductoController extends Controller
             $validacion = $request -> validate([
                 'nombre' => 'required|string',
                 'precio' => 'required|integer',
-                'tipo' => 'required|in:Tecnolagia,Ropa,Calzado,Hogar',
-                'stock' => 'required|integer'
+                'tipo' => 'required|in:Tecnologia,Ropa,Calzado,Hogar',
+                'stock' => 'required|integer',
+                'descripcion' => 'required'
             ]);
 
             $producto = new Producto();
 
-            $producto -> nombre       = $request->input('nombre');
-            $producto -> precio       = $request->input('precio');
-            $producto -> tipo         = $request->input('tipo');
-            $producto -> stock        = $request->input('stock');
-            $producto -> descripcion  = $request->input('descripcion');
+            $producto ->fill($request->all());
             $producto -> imagen       = $imagen;
             $producto -> slug         = time().Str_slug($producto->nombre);
             $producto -> save();
@@ -95,6 +92,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
+        //return $producto;
         return view('productos.edit', compact('producto'));
     }
 
@@ -114,22 +112,22 @@ class ProductoController extends Controller
             $file = $request->file('imagen');
             $imagen = time().$file->getClientOriginalName();
         }
-        $producto -> imagen       = $imagen;
+       // $producto -> imagen       = $imagen;
         //
         $validacion = $request -> validate([
             'nombre' => 'required|string',
             'precio' => 'required|integer',
-            'tipo' => 'required|in:Tecnolagia,Ropa,Calzado,Hogar',
-            'stock' => 'required|integer'
+            'tipo' => 'required|in:Tecnologia,Ropa,Calzado,Hogar',
+            'stock' => 'required|integer',
+            'descripcion' => 'required'
         ]);
         
         $producto->save();
 
         // Guardar Imagen si el producto se registró exitosamente
-        $file->move(public_path().'/imagenes/', $imagen);
+        //$file->move(public_path().'/imagenes/', $imagen);
         //
-        redirect('/publicaciones');
-        return redirect()->route('productos.index');
+        return redirect('/publicaciones');
     }
 
     /**
