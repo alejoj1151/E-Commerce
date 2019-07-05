@@ -51,7 +51,7 @@
                     <div class="form-group">
                         <label for="Desc">Descripción</label>
                         <textarea type="text" class="form-control" name="descripcion" rows="5"></textarea>
-                        @error('Descripcion')
+                        @error('stock')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
