@@ -4,9 +4,6 @@
 
 @section('content')
 
-
-
-
     <form class="form-group" method="POST" action="/productos" enctype="multipart/form-data">
 
         @csrf
