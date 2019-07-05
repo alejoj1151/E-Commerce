@@ -63,8 +63,9 @@ class ProductoController extends Controller
             $file->move(public_path().'/imagenes/', $imagen);
             //
 
-            $productos = Producto::all(); // Lista de todos los productos
-            return view('perfil.publicaciones', compact('productos'));
+            //$productos = Producto::all(); // Lista de todos los productos
+            //return view('perfil.publicaciones', compact('productos'));
+            return redirect('/publicaciones');
 
         } catch (Exception $e) {
             report($e);
@@ -139,7 +140,7 @@ class ProductoController extends Controller
         
         if(empty($query)){
             $message = 'Este producto ha sido eliminado';
-            return redirect()->back()->with('message', 'El producto ya ha sido eliminado');
+            return redirect()->back()->with('message', 'El producto ya había sido eliminado');
         } else {
             $file_path = public_path().'/imagenes/'.$producto -> imagen;
             \File::delete($file_path);

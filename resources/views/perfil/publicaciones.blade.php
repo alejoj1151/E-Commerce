@@ -10,7 +10,7 @@
         </div>
         <div class="row justify-content-center">
             @if(session('message'))
-            <div class="alert alert-success">
+            <div class="alert alert-warning">
                 {{ session('message') }}
             </div>
             @endif
@@ -50,7 +50,7 @@
                     {!! Form::close()!!}
                 </td> --}}
                 <td>
-                    <a  href="{{ route('productos.destroy', $producto->slug) }}" class="btn btn-danger btn-xs" onclick="event.preventDefault();document.getElementById('delete-product-{{$producto->slug}}').submit();">Delete</a>
+                    <a  href="{{ route('productos.destroy', $producto->slug) }}" class="btn btn-danger btn-xs" onclick="event.preventDefault();if(confirm('¿Está seguro que desea eliminar este proucto?')){document.getElementById('delete-product-{{$producto->slug}}').submit()};">Eliminar producto</a>
                
                     <form id="delete-product-{{$producto->slug}}" method="POST" action="{{ route('productos.destroy', $producto->slug) }}" style="display: none;">
                         @csrf
