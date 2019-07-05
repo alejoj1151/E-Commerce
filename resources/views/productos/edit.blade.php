@@ -56,16 +56,12 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="imagen">Imágen</label>
-                        <input type="file" name="imagen" >
-                    </div>
                     <div class="row justify-content-center m-3">
                         <div class="col d-flex justify-content-end">
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalBack">Regresar</a>
                         </div>
                         <div class="col d-flex justify-content-start">
-                            <button type="submit" class="btn btn-primary" href="#">Publicar</button>
+                            <button type="submit" class="btn btn-primary" href="#">Guardar</button>
                         </div>
                     </div>
                 </form>

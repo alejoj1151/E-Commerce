@@ -124,9 +124,6 @@ class ProductoController extends Controller
         
         $producto->save();
 
-        // Guardar Imagen si el producto se registró exitosamente
-        //$file->move(public_path().'/imagenes/', $imagen);
-        //
         return redirect('/publicaciones');
     }
 
@@ -144,6 +141,6 @@ class ProductoController extends Controller
         $productos = Producto::all(); // Lista de todos los productos
         $message = 'Producto eliminado satisfactoriamente';
         //return view('perfil.publicaciones',compact('productos'));
-        return 'deleted';
+        return redirect('/publicaciones');
     }
 }
