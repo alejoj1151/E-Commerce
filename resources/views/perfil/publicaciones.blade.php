@@ -8,6 +8,14 @@
         <div class="row justify-content-center mt-3 mb-3">
             <h1>Mis Publicaciones</h1>
         </div>
+        <div class="row justify-content-center">
+            @if(session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+            @endif
+            
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -35,11 +43,20 @@
                     @endif
                     
                 <td><a href="/productos/{{$producto->slug}}/edit" class="btn btn-primary">Editar producto</a></td>
-                    <td>
-                        {!! Form::open(['route'=> ['productos.destroy', $producto->slug],'method'=> 'DELETE']) !!}
-                            {!! Form::submit('Eliminar producto', ['class' => 'btn btn-danger'])!!}
-                        {!! Form::close()!!}
-                    </td>
+                
+                {{-- <td>
+                    {!! Form::open(['route'=> ['productos.destroy', $producto->slug],'method'=> 'DELETE']) !!}
+                        {!! Form::submit('Eliminar producto', ['class' => 'btn btn-danger'])!!}
+                    {!! Form::close()!!}
+                </td> --}}
+                <td>
+                    <a  href="{{ route('productos.destroy', $producto->slug) }}" class="btn btn-danger btn-xs" onclick="event.preventDefault();document.getElementById('delete-product-{{$producto->slug}}').submit();">Delete</a>
+               
+                    <form id="delete-product-{{$producto->slug}}" method="POST" action="{{ route('productos.destroy', $producto->slug) }}" style="display: none;">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -135,12 +135,16 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
+        $query = Producto::where('slug','=',$producto-> slug)->first();
+        
+        if(empty($query)){
+            $message = 'Este producto ha sido eliminado';
+            return redirect()->back()->with('message', 'El producto ya ha sido eliminado');
+        } else {
             $file_path = public_path().'/imagenes/'.$producto -> imagen;
             \File::delete($file_path);
             $producto->delete();
-            $productos = Producto::all(); // Lista de todos los productos
-            $message = 'Producto eliminado satisfactoriamente';
-            return redirect('/publicaciones');
-    
+            return redirect()->back()->with('message', 'Se ha eliminado satisfactoriamente el producto');
+        }
     }
 }
