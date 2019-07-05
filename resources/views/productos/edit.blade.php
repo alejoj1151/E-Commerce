@@ -58,7 +58,7 @@
                     </div>
                     <div class="row justify-content-center m-3">
                         <div class="col d-flex justify-content-end">
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalBack">Regresar</a>
+                            <a class="btn btn-primary" href="/publicaciones">Regresar</a>
                         </div>
                         <div class="col d-flex justify-content-start">
                             <button type="submit" class="btn btn-primary" href="#">Guardar</button>

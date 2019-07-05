@@ -135,12 +135,12 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        $file_path = public_path().'/imagenes/'.$producto -> imagen;
-        \File::delete($file_path);
-        $producto->delete();
-        $productos = Producto::all(); // Lista de todos los productos
-        $message = 'Producto eliminado satisfactoriamente';
-        //return view('perfil.publicaciones',compact('productos'));
-        return redirect('/publicaciones');
+            $file_path = public_path().'/imagenes/'.$producto -> imagen;
+            \File::delete($file_path);
+            $producto->delete();
+            $productos = Producto::all(); // Lista de todos los productos
+            $message = 'Producto eliminado satisfactoriamente';
+            return redirect('/publicaciones');
+    
     }
 }

@@ -51,11 +51,7 @@
                     <div class="form-group">
                         <label for="Desc">Descripción</label>
                         <textarea type="text" class="form-control" name="descripcion" rows="5"></textarea>
-<<<<<<< Updated upstream
-                        @error('stock')
-=======
                         @error('descripcion')
->>>>>>> Stashed changes
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -65,7 +61,7 @@
                     </div>
                     <div class="row justify-content-center m-3">
                         <div class="col d-flex justify-content-end">
-                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalBack">Regresar</a>
+                            <a class="btn btn-primary" href="/productos">Regresar</a>
                         </div>
                         <div class="col d-flex justify-content-start">
                             <button type="submit" class="btn btn-primary" href="#">Publicar</button>
