@@ -15,14 +15,14 @@
                 <form>
                     <div class="form-group">
                         <label for="Nombre">Nombre del producto</label>
-                        <input type="text" class="form-control" name="nombre">
+                        <input type="text" class="form-control" name="nombre" required>
                         @error('nombre')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="Precio">Precio (cop)</label>
-                        <input type="text" class="form-control" name="precio">
+                        <input type="number" class="form-control" name="precio" required>
                         @error('precio')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -30,7 +30,7 @@
                     
                     <div class="form-group">
                         <label for="Categoria">Tipo</label>
-                        <select type="text" class="form-control" name="tipo">
+                        <select type="text" class="form-control" name="tipo" required>
                             <option type="text" selected="selected">Tecnologia</option>
                             <option type="text">Ropa</option>
                             <option type="text">Calzado</option>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Stock">Stock</label>
-                        <input type="text" class="form-control" name="stock" >
+                        <input type="number" class="form-control" name="stock" required>
                         @error('stock')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -50,7 +50,7 @@
 
                     <div class="form-group">
                         <label for="Desc">Descripción</label>
-                        <textarea type="text" class="form-control" name="descripcion" rows="5"></textarea>
+                        <textarea type="text" class="form-control" name="descripcion" rows="5" required></textarea>
                         @error('descripcion')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror

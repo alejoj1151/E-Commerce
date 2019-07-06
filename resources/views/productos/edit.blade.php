@@ -16,14 +16,14 @@
                 <form>
                     <div class="form-group">
                         <label for="Nombre">Nombre del producto</label>
-                        <input type="text" class="form-control" name="nombre" value="{!! $producto->nombre !!}">
+                        <input type="text" class="form-control" name="nombre" value="{!! $producto->nombre !!}" required>
                         @error('nombre')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="Precio">Precio (cop)</label>
-                        <input type="text" class="form-control" name="precio" value={{$producto->precio}}>
+                        <input type="number" class="form-control" name="precio" value={{$producto->precio}} required>
                         @error('precio')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -31,7 +31,7 @@
 
                     <div class="form-group">
                         <label for="Categoria">Tipo</label>
-                        <select type="text" class="form-control" name="tipo" value={{$producto->categoria}}>
+                        <select type="text" class="form-control" name="tipo" value={{$producto->categoria}} required>
                             <option type="text" selected="selected">Tecnologia</option>
                             <option type="text">Ropa</option>
                             <option type="text">Calzado</option>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Stock">Stock</label>
-                        <input type="text" class="form-control" name="stock" value="{{$producto->stock}}">
+                        <input type="number" class="form-control" name="stock" value="{{$producto->stock}}" required>
                         @error('stock')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -51,7 +51,7 @@
 
                     <div class="form-group">
                         <label for="Desc">Descripción</label>
-                        <textarea type="text" class="form-control" name="descripcion" rows="5" >{{$producto->descripcion}}</textarea>
+                        <textarea type="text" class="form-control" name="descripcion" rows="5" required>{{$producto->descripcion}}</textarea>
                         @error('descripcion')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror

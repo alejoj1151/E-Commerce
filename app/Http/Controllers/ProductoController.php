@@ -65,7 +65,7 @@ class ProductoController extends Controller
 
             //$productos = Producto::all(); // Lista de todos los productos
             //return view('perfil.publicaciones', compact('productos'));
-            return redirect('/publicaciones');
+            return redirect('/publicaciones')->with('message', 'Se ha creado satisfactoriamente el producto');;
 
         } catch (Exception $e) {
             report($e);
@@ -125,7 +125,7 @@ class ProductoController extends Controller
         
         $producto->save();
 
-        return redirect('/publicaciones');
+        return redirect('/publicaciones')->with('message', 'Se ha editado satisfactoriamente el producto');
     }
 
     /**
