@@ -19,7 +19,7 @@ class CreateProductosTable extends Migration
             $table->bigInteger('precio');
             $table->string('tipo');
             $table->bigInteger('stock');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable($value = true);
             $table->timestamps();
         });
     }

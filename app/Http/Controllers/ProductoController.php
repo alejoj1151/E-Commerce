@@ -44,31 +44,34 @@ class ProductoController extends Controller
                 $imagen = time().$file->getClientOriginalName();
             }
             //
+            $validacion = $request -> validate([
+                'nombre' => 'required|string',
+                'precio' => 'required|integer',
+                'tipo' => 'required|in:Tecnologia,Ropa,Calzado,Hogar',
+                'stock' => 'required|integer',
+                'descripcion' => 'required'
+            ]);
 
             $producto = new Producto();
 
-            $producto -> nombre       = $request->input('nombre');
-            $producto -> precio       = $request->input('precio');
-            $producto -> tipo         = $request->input('categoria');
-            $producto -> stock        = $request->input('stock');
-            $producto -> descripcion  = $request->input('descripcion');
+            $producto ->fill($request->all());
             $producto -> imagen       = $imagen;
-
+            $producto -> slug         = time().Str_slug($producto->nombre);
             $producto -> save();
 
             // Guardar Imagen si el producto se registró exitosamente
             $file->move(public_path().'/imagenes/', $imagen);
             //
 
-            $productos = Producto::all(); // Lista de todos los productos
-            return view('perfil.publicaciones', compact('productos'));
+            //$productos = Producto::all(); // Lista de todos los productos
+            //return view('perfil.publicaciones', compact('productos'));
+            return redirect('/publicaciones')->with('message', 'Se ha creado satisfactoriamente el producto');;
 
         } catch (Exception $e) {
             report($e);
     
             return e;
         }
-        //return $request->all(); //Obtener json
     }
 
     /**
@@ -88,9 +91,10 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Producto $producto)
     {
-        //
+        //return $producto;
+        return view('productos.edit', compact('producto'));
     }
 
     /**
@@ -100,9 +104,28 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Producto $producto)
     {
+        $producto->fill($request->except('imagen'));
+
+        // Comprobar Imagen Cargada
+        if($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $imagen = time().$file->getClientOriginalName();
+        }
+       // $producto -> imagen       = $imagen;
         //
+        $validacion = $request -> validate([
+            'nombre' => 'required|string',
+            'precio' => 'required|integer',
+            'tipo' => 'required|in:Tecnologia,Ropa,Calzado,Hogar',
+            'stock' => 'required|integer',
+            'descripcion' => 'required'
+        ]);
+        
+        $producto->save();
+
+        return redirect('/publicaciones')->with('message', 'Se ha editado satisfactoriamente el producto');
     }
 
     /**
@@ -111,8 +134,18 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Producto $producto)
     {
-        //
+        $query = Producto::where('slug','=',$producto-> slug)->first();
+        
+        if(empty($query)){
+            $message = 'Este producto ha sido eliminado';
+            return redirect()->back()->with('message', 'El producto ya había sido eliminado');
+        } else {
+            $file_path = public_path().'/imagenes/'.$producto -> imagen;
+            \File::delete($file_path);
+            $producto->delete();
+            return redirect()->back()->with('message', 'Se ha eliminado satisfactoriamente el producto');
+        }
     }
 }

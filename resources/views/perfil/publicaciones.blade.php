@@ -8,6 +8,14 @@
         <div class="row justify-content-center mt-3 mb-3">
             <h1>Mis Publicaciones</h1>
         </div>
+        <div class="row justify-content-center">
+            @if(session('message'))
+            <div class="alert alert-warning">
+                {{ session('message') }}
+            </div>
+            @endif
+            
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -22,9 +30,7 @@
             <tbody>
                 @foreach ($productos as $producto)
                 <tr>
-                    <td>
-                        <img src="imagenes/{{$producto->imagen}}" alt="" width="100" height="100">
-                    </td>
+                    <td><img src="imagenes/{{$producto->imagen}}" alt="" width="100" height="100"></td>
                     <td>{{$producto->nombre}}</td>
                     <td>${{number_format($producto->precio, 0, '.', ',')}} COP</td>
                     
@@ -36,9 +42,21 @@
                         <td>{{$producto->stock}} Unidades</td>
                     @endif
                     
-                    <td><a href="#" class="btn btn-primary">Editar producto</a></td>
+                    <td><a href="/productos/{{$producto->slug}}/edit" class="btn btn-primary">Editar producto</a></td>
+                    
+                    {{-- <td>
+                        {!! Form::open(['route'=> ['productos.destroy', $producto->slug],'method'=> 'DELETE']) !!}
+                            {!! Form::submit('Eliminar producto', ['class' => 'btn btn-danger'])!!}
+                        {!! Form::close()!!}
+                    </td> --}}
+                    
                     <td>
-                        <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete">Eliminar producto</a>
+                        <a  href="{{ route('productos.destroy', $producto->slug) }}" class="btn btn-danger btn-xs" onclick="event.preventDefault();if(confirm('¿Está seguro que desea eliminar este producto?')){document.getElementById('delete-product-{{$producto->slug}}').submit()};">Eliminar producto</a>
+                
+                        <form id="delete-product-{{$producto->slug}}" method="POST" action="{{ route('productos.destroy', $producto->slug) }}" style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                     </td>
                 </tr>
                 @endforeach

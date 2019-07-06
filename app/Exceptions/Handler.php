@@ -4,6 +4,9 @@ namespace Application\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Application\Producto;
+use Illuminate\Http\Request;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +49,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        if($exception instanceof ModelNotFoundException)
+        {
+            //$productos = Producto::all();
+            //return response()->view('perfil.publicaciones',compact('productos'));
+            return redirect('/publicaciones')->with('message', 'El producto ya había sido eliminado');
+        } else {
+            return parent::render($request, $exception);
+        }
+        
     }
 }
