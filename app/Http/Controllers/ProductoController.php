@@ -46,9 +46,9 @@ class ProductoController extends Controller
             //
             $validacion = $request -> validate([
                 'nombre' => 'required|string',
-                'precio' => 'required|integer',
+                'precio' => 'required|integer|min:0',
                 'tipo' => 'required|in:Tecnologia,Ropa,Calzado,Hogar',
-                'stock' => 'required|integer',
+                'stock' => 'required|integer|min:0',
                 'descripcion' => 'required'
             ]);
 
