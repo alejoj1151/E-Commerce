@@ -54,7 +54,7 @@ class ProductoController extends Controller
 
             $producto = new Producto();
 
-            $producto ->fill($request->all());
+            $producto -> fill($request->all());
             $producto -> imagen       = $imagen;
             $producto -> slug         = time().Str_slug($producto->nombre);
             $producto -> save();

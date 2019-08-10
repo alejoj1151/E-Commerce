@@ -7,13 +7,22 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}" /> 
 
-        <!-- <link rel="stylesheet" href="{{url('css/estilos.css')}}"/> -->
+        <link rel="stylesheet" href="{{url('css/estilos.css')}}"/>
         <script src="{{url('js/jquery.min.js')}}"></script>
         <script src="{{url('js/popper.min.js')}}"></script>
         <script src="{{url('js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript">
+            $(window).on('load', function () { 
+                $(".loader-page").css(
+                    {
+                        visibility:"hidden",opacity:"0"
+                    })
+                });
+        </script>
     </head>
 
     <body>
+        <div class="loader-page"></div>    
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <div class="mr-1">

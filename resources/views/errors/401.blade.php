@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Editar producto existente')
+@section('title', 'No autorizado')
 
 @section('content')
     <div class="container">
