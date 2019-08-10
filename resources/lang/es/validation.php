@@ -57,7 +57,7 @@ return [
     'image'                => ':attribute debe ser una imagen.',
     'in'                   => ':attribute es inválido.',
     'in_array'             => 'El campo :attribute no existe en :other.',
-    'integer'              => ':attribute debe ser un número entero.',
+    'integer'              => 'El :attribute debe ser un número entero.',
     'ip'                   => ':attribute debe ser una dirección IP válida.',
     'ipv4'                 => ':attribute debe ser un dirección IPv4 válida',
     'ipv6'                 => ':attribute debe ser un dirección IPv6 válida.',
@@ -83,7 +83,7 @@ return [
     'mimes'                => ':attribute debe ser un archivo con formato: :values.',
     'mimetypes'            => ':attribute debe ser un archivo con formato: :values.',
     'min'                  => [
-        'numeric' => 'El tamaño de :attribute debe ser de al menos :min.',
+        'numeric' => 'El :attribute debe ser un número entero positivo',//'El tamaño de :attribute debe ser de al menos :min.',
         'file'    => 'El tamaño de :attribute debe ser de al menos :min kilobytes.',
         'string'  => ':attribute debe contener al menos :min caracteres.',
         'array'   => ':attribute debe tener al menos :min elementos.',
