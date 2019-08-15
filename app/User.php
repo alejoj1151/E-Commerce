@@ -43,6 +43,7 @@ class User extends Authenticatable
         }
         return false;
     }
+
     /**
      * The attributes that are mass assignable.
      *

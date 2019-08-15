@@ -19,6 +19,13 @@ class ProductoController extends Controller
         return view('productos.index', compact('productos'));
     }
 
+    public function ShowMisPublicaciones()
+    {
+        $user = auth()->user();
+        $productos = Producto::where('email', $user->email)->get(); // Lista de todos los productos
+        return view('perfil.publicaciones', compact('productos'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -56,8 +63,9 @@ class ProductoController extends Controller
             ]);
 
             $producto = new Producto();
-
+            $user = auth()->user();
             $producto -> fill($request->all());
+            $producto ->email = $user->email;
             $producto -> imagen       = $imagen;
             $producto -> slug         = time().Str_slug($producto->nombre);
             $producto -> save();
@@ -94,7 +102,7 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit(Request $request,Producto $producto)
     {
         $request->user()->authorizeRoles(['vendedor']); // Rol Vendedor único que puede hacer esta acción 
         return view('productos.edit', compact('producto'));

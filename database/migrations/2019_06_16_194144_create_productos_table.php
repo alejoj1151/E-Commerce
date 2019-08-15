@@ -21,6 +21,7 @@ class CreateProductosTable extends Migration
             $table->bigInteger('stock');
             $table->string('descripcion')->nullable($value = true);
             //$table->string('estado');
+            $table->string('email');
             $table->timestamps();
         });
     }
