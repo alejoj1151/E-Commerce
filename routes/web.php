@@ -11,19 +11,20 @@
 |
 */
 
-//ELIMINAR!!
 use Application\Producto;
-//
 
-
-Route::resource('/', 'ProductoController');
-Route::resource('/productos', 'ProductoController');
-//ELIMINAR!!!!
-Route::get('/publicaciones', function () {
-    $productos = Producto::all(); // Lista de todos los productos
-    return view('perfil.publicaciones', compact('productos'));
-});
-//
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// User authenticate, show the information
+Route::group(['middleware' => ['auth']], function () { 
+
+    Route::resource('/', 'ProductoController');
+    Route::resource('/productos', 'ProductoController');
+
+    Route::get('/publicaciones', function () {
+        $productos = Producto::all(); // Lista de todos los productos
+        return view('perfil.publicaciones', compact('productos'));
+    });
+
+    Route::get('/home', 'HomeController@index')->name('home');
+});

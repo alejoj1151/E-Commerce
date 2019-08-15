@@ -3,7 +3,9 @@
 namespace Application\Http\Controllers\Auth;
 
 use Application\User;
+use Application\Role;
 use Application\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -49,10 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
             'direccion' => ['required', 'string'],
-            'telefono' => ['required', 'integer', 'max:255'],
+            'telefono' => ['required', 'integer'],
+            'identificacion' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -66,13 +69,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        /*return User::create([
+            'nombre' => $data['nombre'],
             'apellido' => $data['apellido'],
             'direccion' => $data['direccion'],
             'telefono' => $data['telefono'],
+            'identificacion' => $data['identificacion'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);*/
+        $user = User::create([
+            'nombre' => $data['nombre'],
+            'apellido' => $data['apellido'],
+            'direccion' => $data['direccion'],
+            'telefono' => $data['telefono'],
+            'identificacion' => $data['identificacion'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        $user
+            ->roles()
+            ->attach(Role::where('name', 'comprador')->first());
+        return $user;
     }
 }

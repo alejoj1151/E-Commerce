@@ -17,6 +17,7 @@ class AddUserInformation extends Migration
             $table->string('apellido');
             $table->string('direccion');
             $table->integer('telefono');
+            $table->integer('identificacion')->unique();
         });
     }
 

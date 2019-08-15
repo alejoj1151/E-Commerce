@@ -12,8 +12,9 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['comprador', 'administrador', 'vendedor']);
         $productos = Producto::all(); // Lista de todos los productos
         return view('productos.index', compact('productos'));
     }
@@ -23,8 +24,9 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $request->user()->authorizeRoles(['vendedor']); // Rol Vendedor único que puede hacer esta acción 
         return view('productos.create');
     }
 
@@ -36,6 +38,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->user()->authorizeRoles(['vendedor']); // Rol Vendedor único que puede hacer esta acción 
         try {
 
             // Comprobar Imagen Cargada
@@ -93,7 +96,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //return $producto;
+        $request->user()->authorizeRoles(['vendedor']); // Rol Vendedor único que puede hacer esta acción 
         return view('productos.edit', compact('producto'));
     }
 
@@ -106,6 +109,8 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
+        $request->user()->authorizeRoles(['vendedor']); // Rol Vendedor único que puede hacer esta acción 
+
         $producto->fill($request->except('imagen'));
 
         // Comprobar Imagen Cargada

@@ -20,6 +20,13 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    // Redireccionar a los usuarios cuando se autentifican a una ruta en específico
+    protected function authenticated()
+    {
+        return redirect('/home');
+    }
+
+
     /**
      * Where to redirect users after login.
      *

@@ -21,8 +21,8 @@
         </script>
     </head>
 
+    <div class="loader-page"></div>
     <body>
-        <div class="loader-page"></div>    
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <div class="mr-1">
@@ -30,10 +30,12 @@
                 </div>
                 <a class="navbar-brand" href="/productos">e-Commerce</a>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                       
+                    
+                    @if (Auth::check())
                     <i class="fas fa-search" aria-hidden="true"></i>
                     <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="¿Qué estás buscando?" aria-label="Search">
-                             
+                    @endif
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -52,7 +54,7 @@
                             </div>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{Auth::user()->name}}
+                                    {{Auth::user()->nombre}}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/publicaciones">Mis publicaciones</a>
@@ -75,12 +77,13 @@
             </div>
         </nav>
         <div class="col">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-                
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
                 <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/productos">Inicio</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/productos">Inicio</a>
+                    </li>
+                    @if (Auth::check())
+                        @if (Auth::user()->hasRole('vendedor'))
                         <li class="nav-item">
                             <a class="nav-link" href="/productos/create">Crear Producto</a>
                         </li>
@@ -94,8 +97,9 @@
                                 <a class="dropdown-item" href="#">Hogar</a>
                             </div>
                         </li>
-                    </ul>
-               
+                        @endif
+                    @endif
+                </ul>
             </nav> 
         </div>
         <!-- Contenido -->

@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function roles(){
+    public function roles() { 
         return $this->belongsToMany('Application\Role');
     }
 
@@ -18,7 +18,7 @@ class User extends Authenticatable
         if($this-> hasAnyRole($roles)) {
             return true;
         }
-        abort(401, "Esta acción no está autorizada");
+        abort(401, "No tienes acceso a estas funciones");
         return false;
     }
 
@@ -49,7 +49,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'apellido', 'email', 'password', 'direccion', 'telefono',
+        'nombre', 'apellido', 'email', 'password', 'direccion', 'telefono', 'identificacion',
     ];
 
     /**
