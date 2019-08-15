@@ -85,7 +85,7 @@
                     @if (Auth::check())
                         @if (Auth::user()->hasRole('vendedor'))
                         <li class="nav-item">
-                            <a class="nav-link" href="/productos/create">Crear Producto</a>
+                            <a class="nav-link" href="/productos/create">Publicar Producto</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Categorias</a>
