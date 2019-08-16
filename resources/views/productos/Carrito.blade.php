@@ -21,6 +21,7 @@
                 <th scope="col">Imágen</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
+                <th scope="col"></th>
 
             </tr>
             </thead>
@@ -30,9 +31,18 @@
                     <td><img src="imagenes/{{$carrito->imagen}}" alt="" width="100" height="100"></td>
                     <td>{{$carrito->nombre}}</td>
                     <td>${{number_format($carrito->precio, 0, '.', ',')}} COP</td>
-
+                    <td><a href='/carrito/{{$carrito->idCarrito}}/destroy' class="btn btn-primary">Eliminar del carrito</a></td>
             @endforeach
             </tbody>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Total = {{number_format($total, 0, '.', ',')}} COP</th>
+                <th scope="col"><a class="btn btn-success" href="#">Comprar</a></th>
+
+
+
+            </tr>
         </table>
     </div>
 @endsection

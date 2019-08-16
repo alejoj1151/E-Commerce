@@ -14,7 +14,7 @@ class CreateCarritosTable extends Migration
     public function up()
     {
         Schema::create('carritos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('idCarrito');
             $table->timestamps();
             $table->Integer('IdProducto');
             $table->string('emailUser');

@@ -16,10 +16,14 @@ class CarritoController extends Controller
     {
         $user = auth()->user();
         $carritos = Carrito::where('Carritos.emailUser',$user->email)
-                            ->join('productos','carritos.IdProducto','=','productos.id')
+                            ->leftJoin('productos','carritos.IdProducto','=','productos.id')
             ->get();
-
-        return view('productos.Carrito',compact ('carritos'));
+        $total =0;
+        foreach ($carritos as $carrito){
+            $total = $carrito->precio + $total;
+        }
+        //return $carritos;
+        return view('productos.Carrito',compact ('carritos','total'));
 
     }
 
@@ -95,6 +99,10 @@ class CarritoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if($carrito = Carrito::where('idCarrito', $id)->delete()){
+            return redirect()->back()->with('message', 'Se ha eliminado el producto del carrito');
+        }else {
+            return redirect()->back()->with('message', 'El producto ya no existe en el carrito');
+        }
     }
 }
