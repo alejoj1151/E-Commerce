@@ -22,6 +22,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/productos', 'ProductoController');
 
     Route::get('/publicaciones', 'ProductoController@ShowMisPublicaciones');
-
+    Route::get('/ShowProduct/{id}', 'ProductoController@Show');
+    Route::get('/carrito/{id}', 'CarritoController@store');
+    Route::get('/carrito', 'CarritoController@index');
     Route::get('/home', 'HomeController@index')->name('home');
 });

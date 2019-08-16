@@ -1,28 +1,33 @@
 
 <html>
     <head>
+
         <meta charset="UTF-8">
         <!-- Estilos -->
+
         <title>E-Commerce - @yield('title')</title>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}" /> 
+        <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.min.css')}}" />
 
         <link rel="stylesheet" href="{{url('css/estilos.css')}}"/>
         <script src="{{url('js/jquery.min.js')}}"></script>
         <script src="{{url('js/popper.min.js')}}"></script>
         <script src="{{url('js/bootstrap.min.js')}}"></script>
+
         <script type="text/javascript">
-            $(window).on('load', function () { 
+            $(window).on('load', function () {
                 $(".loader-page").css(
                     {
                         visibility:"hidden",opacity:"0"
                     })
                 });
         </script>
+
     </head>
 
     <div class="loader-page"></div>
     <body>
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <div class="mr-1">
@@ -58,7 +63,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/publicaciones">Mis publicaciones</a>
-                                    <a class="dropdown-item" href="#">Ventas</a>
+                                    <a class="dropdown-item" href="/carrito">Carrito</a>
                                     <a class="dropdown-item" href="#">Configuración</a>
                                     <!-- Ruta cerrar cesión -->
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -105,5 +110,6 @@
         <!-- Contenido -->
         @yield('content') 
         </div>
+
     </body>
 </html>

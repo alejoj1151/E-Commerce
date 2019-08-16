@@ -93,7 +93,8 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        //
+        $producto = Producto::where('id', $id)->first(); // Lista de todos los productos
+        return view('productos.ProductoSeleccionado',compact('producto'));
     }
 
     /**
