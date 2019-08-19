@@ -49,14 +49,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof ModelNotFoundException)
-        {
-            //$productos = Producto::all();
-            //return response()->view('perfil.publicaciones',compact('productos'));
-            return redirect('/publicaciones')->with('message', 'El producto ya había sido eliminado');
-        } else {
-            return parent::render($request, $exception);
-        }
+        return parent::render($request, $exception);
         
     }
 }

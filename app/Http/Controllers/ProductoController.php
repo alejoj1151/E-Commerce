@@ -15,14 +15,14 @@ class ProductoController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['comprador', 'administrador', 'vendedor']);
-        $productos = Producto::all(); // Lista de todos los productos
+        $productos = Producto::where('estado','activo')->get(); // Lista de todos los productos
         return view('productos.index', compact('productos'));
     }
 
     public function ShowMisPublicaciones()
     {
         $user = auth()->user();
-        $productos = Producto::where('email', $user->email)->get(); // Lista de todos los productos
+        $productos = Producto::where([['email', $user->email],['estado','activo']])->get(); // Lista de todos los productos
         return view('perfil.publicaciones', compact('productos'));
     }
 
@@ -65,7 +65,8 @@ class ProductoController extends Controller
             $producto = new Producto();
             $user = auth()->user();
             $producto -> fill($request->all());
-            $producto ->email = $user->email;
+            $producto -> estado = 'activo';
+            $producto -> email = $user->email;
             $producto -> imagen       = $imagen;
             $producto -> slug         = time().Str_slug($producto->nombre);
             $producto -> save();
@@ -152,14 +153,14 @@ class ProductoController extends Controller
     {
         $query = Producto::where('slug','=',$producto-> slug)->first();
         
-        if(empty($query)){
-            $message = 'Este producto ha sido eliminado';
-            return redirect()->back()->with('message', 'El producto ya había sido eliminado');
+        if($query -> estado == 'inactivo'){
+            return redirect('/publicaciones')->with('message', 'El producto ya había sido desactivado');
         } else {
-            $file_path = public_path().'/imagenes/'.$producto -> imagen;
-            \File::delete($file_path);
-            $producto->delete();
-            return redirect()->back()->with('message', 'Se ha eliminado satisfactoriamente el producto');
+            //$file_path = public_path().'/imagenes/'.$producto -> imagen;
+            //\File::delete($file_path);
+            $producto-> estado = "inactivo";
+            $producto->save();
+            return redirect('/publicaciones')->with('message', 'Se ha desactivado satisfactoriamente el producto');
         }
     }
 }

@@ -27,7 +27,8 @@
                     <th class= "" scope="col"></th>
                 </tr>
             </thead>
-            <tbody>
+            @if (count($productos) > 0)
+            <tbody>            
                 @foreach ($productos as $producto)
                 <tr>
                     <td><img src="imagenes/{{$producto->imagen}}" alt="" width="100" height="100"></td>
@@ -51,9 +52,9 @@
                     </td> --}}
                     
                     <td>
-                        <a  href="{{ route('productos.destroy', $producto->slug) }}" class="btn btn-danger btn-xs" onclick="event.preventDefault();if(confirm('¿Está seguro que desea eliminar este producto?')){document.getElementById('delete-product-{{$producto->slug}}').submit()};">Eliminar producto</a>
+                        <a  href="{{ route('productos.destroy', $producto->slug) }}" class="btn btn-danger btn-xs" onclick="event.preventDefault();if(confirm('¿Está seguro que desea desactivar este producto?')){document.getElementById('desactivar-producto-{{$producto->slug}}').submit()};">Desactivar producto</a>
                 
-                        <form id="delete-product-{{$producto->slug}}" method="POST" action="{{ route('productos.destroy', $producto->slug) }}" style="display: none;">
+                        <form id="desactivar-producto-{{$producto->slug}}" method="POST" action="{{ route('productos.destroy', $producto->slug) }}" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>
@@ -61,6 +62,14 @@
                 </tr>
                 @endforeach
             </tbody>
+            @else
+            <div class="row justify-content-center">
+                <div class="alert alert-warning text-center">
+                    Es posible que haya desactivado sus productos publicados<br>o no haya publicado ninguno aún.
+                </div>
+            </div>
+                
+            @endif
         </table>
     </div>
 @endsection
