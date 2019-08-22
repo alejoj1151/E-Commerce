@@ -47,6 +47,23 @@ class UserTableSeeder extends Seeder
         $user->identificacion = "11113";
         $user->email = "vendedor@mail.com";
         $user->password = bcrypt("vendedor");
+        $user->nit = 1234;
+        $user->empresa = "La pruebita";
+        $user->vendedor_aprobado = false;
+        $user->save();
+        $user->roles()->attach($role_vendedor);
+
+        $user = new User();
+        $user->nombre = "Vendedor";
+        $user->apellido = "Vendedor";
+        $user->direccion = "Calle 5234";
+        $user->telefono = "5234";
+        $user->identificacion = "51513";
+        $user->email = "vendedor2@mail.com";
+        $user->password = bcrypt("vendedor2");
+        $user->nit = 1234;
+        $user->empresa = "La pruebita";
+        $user->vendedor_aprobado = true;
         $user->save();
         $user->roles()->attach($role_vendedor);
     }

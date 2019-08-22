@@ -26,5 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/carrito/{id}', 'CarritoController@store');
     Route::get('/carrito', 'CarritoController@index');
     Route::get('/carrito/{id}/destroy', 'CarritoController@destroy');
+
+    Route::get('/solicitudes/vendedor', 'AdministradorController@ShowSolicitudesVendedor');
+
+
     Route::get('/home', 'HomeController@index')->name('home');
 });
