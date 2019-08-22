@@ -18,6 +18,11 @@ class AddUserInformation extends Migration
             $table->string('direccion');
             $table->integer('telefono');
             $table->integer('identificacion')->unique();
+            $table->integer('nit')->nullable($value = true);
+            $table->string('empresa')->nullable($value = true);
+            $table->integer('num_ventas')->nullable($value = true);
+            $table->boolean('vendedor_aprobado')->nullable($value = true);
+            $table->integer('puntuacion')->nullable($value = true);
         });
     }
 

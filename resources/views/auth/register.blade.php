@@ -12,7 +12,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="nombre" text="12345" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">
                                 <input id="nombre" type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('nombre') }}" required autocomplete="nombre" autofocus>
@@ -117,6 +117,57 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="Categoria" class="col-md-4 col-form-label text-md-right">Tipo de vinculación</label>
+
+                            <div class="custom-radios col-md-6">
+                                <div>
+                                    Comprador
+                                    <input type="radio" onclick="javascript:yesnoCheck(0);" id="color-1" name="rol" value="comprador" checked>
+                                    <label for="color-1">
+                                        <span></span>
+                                    </label>
+                                </div>
+                                    
+                                <div class="col-md-7">
+                                    Vendedor
+                                    <input type="radio" onclick="javascript:yesnoCheck(1);" id="color-2" name="rol" value="vendedor">
+                                    <label for="color-2">
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="ifYes" style="display:none">
+
+                            <div class="form-group row">
+                                <label for="nit" class="col-md-4 col-form-label text-md-right">{{ __('NIT') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="nit" type="text" class="form-control @error('nit') is-invalid @enderror" name="nit" value="{{ old('nit') }}" autocomplete="nit" autofocus>
+    
+                                    @error('nit')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="empresa" text="12345" class="col-md-4 col-form-label text-md-right">{{ __('Empresa') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="empresa" type="text" class="form-control @error('empresa') is-invalid @enderror" name="empresa" value="{{ old('empresa') }}" autocomplete="empresa" autofocus>
+    
+                                    @error('empresa')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -130,4 +181,5 @@
         </div>
     </div>
 </div>
+
 @endsection

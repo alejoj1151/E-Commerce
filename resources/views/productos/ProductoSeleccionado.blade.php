@@ -22,7 +22,7 @@
 
                     @csrf
                     <button type="submit" class="btn btn-primary" href="#">Añadir al carrito</button>
-                    <a class="btn btn-success" href="#">Comprar</a>
+                    <a class="btn btn-success" href="/pago/{{encrypt($producto)}}">Comprar</a>
                     <p>&nbsp;</p>
                     @error('cantidad')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -30,12 +30,6 @@
                     <p class="text-left">Cantidad
                         <input name="cantidad" type="number" value="1" min="1" max="10" step="1"/>
                     </p>
-
-
-
-
-
-
             </div>
 
         </div><!-- end row -->

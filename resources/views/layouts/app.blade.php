@@ -17,10 +17,24 @@
         <script type="text/javascript">
             $(window).on('load', function () {
                 $(".loader-page").css(
-                    {
-                        visibility:"hidden",opacity:"0"
-                    })
-                });
+                {
+                    visibility:"hidden",opacity:"0"
+                })
+            });
+            $(":text").blur(); 
+
+            $('#myStateButton').on('click', function () {
+                $(this).button('complete') 
+            })
+        </script>
+
+        <script type="text/javascript">
+            function yesnoCheck( type ) {
+                if (type == 1) {
+                    document.getElementById('ifYes').style.display = 'block';
+                }
+                else document.getElementById('ifYes').style.display = 'none';
+            }
         </script>
 
     </head>
@@ -62,7 +76,11 @@
                                     {{Auth::user()->nombre}}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/publicaciones">Mis publicaciones</a>
+                                    @if (Auth::check())
+                                        @if (Auth::user()->hasRole('vendedor'))
+                                            <a class="dropdown-item" href="/publicaciones">Mis publicaciones</a>
+                                        @endif
+                                    @endif
                                     <a class="dropdown-item" href="/carrito">Carrito</a>
                                     <a class="dropdown-item" href="#">Configuración</a>
                                     <!-- Ruta cerrar cesión -->
@@ -101,6 +119,13 @@
                                 <a class="dropdown-item" href="#">Calzado</a>
                                 <a class="dropdown-item" href="#">Hogar</a>
                             </div>
+                        </li>
+                        @endif
+                    @endif
+                    @if (Auth::check())
+                        @if (Auth::user()->hasRole('administrador'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="/solicitudes/vendedor">Aprobar Vendedor</a>
                         </li>
                         @endif
                     @endif

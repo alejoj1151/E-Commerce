@@ -58,6 +58,9 @@ class RegisterController extends Controller
             'identificacion' => ['required', 'integer'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'rol'=> ['required', 'string', 'in:comprador,vendedor'],
+            "nit" => ["required_if:rol,==,vendedor"],
+            "empresa" => ["required_if:rol,==,vendedor"],
         ]);
     }
 
@@ -69,15 +72,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        /*return User::create([
-            'nombre' => $data['nombre'],
-            'apellido' => $data['apellido'],
-            'direccion' => $data['direccion'],
-            'telefono' => $data['telefono'],
-            'identificacion' => $data['identificacion'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);*/
         $user = User::create([
             'nombre' => $data['nombre'],
             'apellido' => $data['apellido'],
@@ -86,10 +80,28 @@ class RegisterController extends Controller
             'identificacion' => $data['identificacion'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'nit' =>null,
+            'empresa' =>null,
+            'vendedor_aprobado' =>null,
+            'puntuacion' =>null,
         ]);
-        $user
+
+        if($data['rol'] == 'vendedor') {
+            $user -> nit = $data['nit'];
+            $user -> empresa = $data['empresa'];
+            $user -> num_ventas = 0;
+            $user -> vendedor_aprobado = false;
+            $user -> puntuacion = 0;
+            $user
+            ->roles()
+            ->attach(Role::where('name', 'vendedor')->first());
+            $user->save();
+        }
+        else {
+            $user
             ->roles()
             ->attach(Role::where('name', 'comprador')->first());
+        }
         return $user;
     }
 }

@@ -26,5 +26,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/carrito/{id}', 'CarritoController@store');
     Route::get('/carrito', 'CarritoController@index');
     Route::get('/carrito/{id}/destroy', 'CarritoController@destroy');
+
+    Route::get('/solicitudes/vendedor', 'AdministradorController@ShowSolicitudesVendedor');
+    Route::get('/solicitudes/vendedor/{id}', 'AdministradorController@AceptarVendedor');
+
+    Route::post('/pago', 'PagoController@store');
+    Route::get('/pago', 'PagoController@PagoProductoCarrito');
+    Route::get('/pago/{producto}', 'PagoController@PagoProductoIndividual');
+    
     Route::get('/home', 'HomeController@index')->name('home');
 });
