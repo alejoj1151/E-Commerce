@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/publicaciones', 'ProductoController@ShowMisPublicaciones');
     Route::get('/ShowProduct/{id}', 'ProductoController@Show');
-    Route::get('/carrito/{id}', 'CarritoController@store');
+    Route::post('/carrito/{id}', 'CarritoController@store');
     Route::get('/carrito', 'CarritoController@index');
     Route::get('/carrito/{id}/destroy', 'CarritoController@destroy');
     Route::get('/home', 'HomeController@index')->name('home');
