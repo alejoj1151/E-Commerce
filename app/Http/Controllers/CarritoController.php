@@ -22,10 +22,9 @@ class CarritoController extends Controller
                             ->leftJoin('productos','carritos.IdProducto','=','productos.id')
             ->get();
         $total =0;
-        foreach ($carritos as $carrito){
-        $total = ($carrito->precio)*$carrito->cantidad + $total;
+        foreach ($carritos as $carrito) {
+            $total = ($carrito->precio)*$carrito->cantidad + $total;
         }
-        //return $carritos;
         return view('productos.Carrito',compact ('carritos','total'));
 
     }

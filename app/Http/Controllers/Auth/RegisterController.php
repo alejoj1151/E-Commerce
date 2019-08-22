@@ -80,6 +80,10 @@ class RegisterController extends Controller
             'identificacion' => $data['identificacion'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'nit' =>null,
+            'empresa' =>null,
+            'vendedor_aprobado' =>null,
+            'puntuacion' =>null,
         ]);
 
         if($data['rol'] == 'vendedor') {
@@ -91,6 +95,7 @@ class RegisterController extends Controller
             $user
             ->roles()
             ->attach(Role::where('name', 'vendedor')->first());
+            $user->save();
         }
         else {
             $user

@@ -16,6 +16,7 @@
             @endif
             
         </div>
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -35,7 +36,9 @@
 
                     <td>{{$vendedor->empresa}}</td>
                     
-                    <td><a href="/solicitudes/vendedor/{{$vendedor->identificacion}}/accept" class="btn btn-primary">Aprobar</a></td>
+                    <td>
+                        <a href="/solicitudes/vendedor/{{$vendedor->identificacion}}" class="btn btn-primary">Aprobar</a>
+                    </td>
                     
                 </tr>
                 @endforeach

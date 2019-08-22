@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Productos disponibles')
+@section('title', 'Productos en carrito')
 
 @section('content')
     <div class="container">
@@ -44,7 +44,7 @@
                 <th scope="col"></th>
                 <th scope="col"></th>
                 <th scope="col">Total = {{number_format($total, 0, '.', ',')}} COP</th>
-                <th scope="col"><a class="btn btn-success" href="#">Comprar</a></th>
+                <th scope="col"><a class="btn btn-success" href="/pago">Comprar</a></th>
 
 
 
