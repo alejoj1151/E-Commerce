@@ -5,6 +5,9 @@ namespace Application\Http\Controllers;
 use Illuminate\Http\Request;
 use Application\Producto;
 use Application\Carrito;
+use Illuminate\Http\Resources\Json\Resource;
+use phpDocumentor\Reflection\Types\Resource_;
+
 class CarritoController extends Controller
 {
     /**
@@ -20,7 +23,7 @@ class CarritoController extends Controller
             ->get();
         $total =0;
         foreach ($carritos as $carrito){
-            $total = $carrito->precio + $total;
+        $total = ($carrito->precio)*$carrito->cantidad + $total;
         }
         //return $carritos;
         return view('productos.Carrito',compact ('carritos','total'));
@@ -43,13 +46,18 @@ class CarritoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(Request $resource,$id)
     {
         $user = auth()->user();
+        $validacion = $resource -> validate([
+            'cantidad' => 'integer|min:1',
+        ],['cantidad.min'    => 'Debe añadir almenos un elemento']);
         if($producto = Producto::where('id', $id)->first()){
             $carrito = new Carrito();
             $carrito->IdProducto=$id;
             $carrito->emailUser = $user->email;
+            $carrito->cantidad = $resource->cantidad;
+            $carrito->total= ($resource->cantidad)*($producto->precio);
             $carrito->save();
             return redirect('/productos')->with('message', 'Se ha añadido al carrito satisfactoriamente');;
         }else{

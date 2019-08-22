@@ -16,14 +16,14 @@
                 <form>
                     <div class="form-group">
                         <label for="Nombre">Nombre del producto</label>
-                        <input type="text" class="form-control" name="nombre" value="{!! $producto->nombre !!}" required>
+                        <input type="text" class="form-control" name="nombre" value="{!! $producto->nombre !!}" required oninvalid="this.setCustomValidity('El campo Nombre es obligatorio')" onchange="this.setCustomValidity('')">
                         @error('nombre')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="Precio">Precio (cop)</label>
-                        <input type="number" class="form-control" name="precio" value={{$producto->precio}} required>
+                        <input type="number" class="form-control" name="precio" value={{$producto->precio}} required oninvalid="this.setCustomValidity('El campo Precio es obligatorio')" onchange="this.setCustomValidity('')">
                         @error('precio')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -43,7 +43,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Stock">Stock</label>
-                        <input type="number" class="form-control" name="stock" value="{{$producto->stock}}" required>
+                        <input type="number" class="form-control" name="stock" value="{{$producto->stock}}" required oninvalid="this.setCustomValidity('El campo Stock es obligatorio')" onchange="this.setCustomValidity('')">
                         @error('stock')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -51,7 +51,7 @@
 
                     <div class="form-group">
                         <label for="Desc">Descripción</label>
-                        <textarea type="text" class="form-control" name="descripcion" rows="5" required>{{$producto->descripcion}}</textarea>
+                        <textarea type="text" class="form-control" name="descripcion" rows="5" required oninvalid="this.setCustomValidity('El campo Descripción es obligatorio')" onchange="this.setCustomValidity('')">{{$producto->descripcion}}</textarea>
                         @error('descripcion')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror

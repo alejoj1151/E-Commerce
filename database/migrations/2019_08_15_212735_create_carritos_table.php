@@ -18,6 +18,8 @@ class CreateCarritosTable extends Migration
             $table->timestamps();
             $table->Integer('IdProducto');
             $table->string('emailUser');
+            $table->Integer('cantidad');
+            $table->Integer('total');
         });
     }
 
