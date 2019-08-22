@@ -48,6 +48,8 @@ class CarritoController extends Controller
      */
     public function store(Request $resource,$id)
     {
+        $resource->user()->authorizeRoles(['comprador']);
+
         $user = auth()->user();
         $validacion = $resource -> validate([
             'cantidad' => 'integer|min:1',
