@@ -24,7 +24,7 @@ _Sigue los siguientes pasos para inicializar correctamente el proyecto_
 
 - Renombrar el archivo de la carpeta raiz .env.example a .env 
  - Modificar los parametros DB_DATABASE al nombre de la base de datos que manejas, para el proyecto se uso ecommerce_db
- - Cambiar el parametro DB_USERNAME al usuario que manejas en la base de datos 
+ - Cambiar el parametro DB_USERNAME al usuario que manejas en la base de datos, por defecto normalmente se maneja root 
  - Cambiar DB_PASSWORD y asignar la contraseña que tu usuario de la base de datos maneja, por defecto normalmente no se tiene una contraseña y se deja el campo vacio
  - Una vez configurado el archivo .env, en la carpeta raiz abrir la consola y ejecutar php artisan migrate --seed. para asi crear las tablas usadas en el proyecto, en la base de datos y insertar usuarios de prueba.
  
