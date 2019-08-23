@@ -54,14 +54,15 @@ class RegisterController extends Controller
             'nombre' => ['required', 'string', 'max:255'],
             'apellido' => ['required', 'string', 'max:255'],
             'direccion' => ['required', 'string'],
-            'telefono' => ['required', 'integer'],
-            'identificacion' => ['required', 'integer'],
+            'telefono' => ['required', 'integer', 'min:0'],
+            'identificacion' => ['required', 'integer', 'min:0'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'rol'=> ['required', 'string', 'in:comprador,vendedor'],
             "nit" => ["required_if:rol,==,vendedor"],
             "empresa" => ["required_if:rol,==,vendedor"],
-        ]);
+        ],
+        ['rol.in'    => 'tipo de vinculación  inválida']);
     }
 
     /**

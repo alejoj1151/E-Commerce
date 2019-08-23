@@ -116,7 +116,10 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-
+                        
+                        @error('rol')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <div class="form-group row">
                             <label for="Categoria" class="col-md-4 col-form-label text-md-right">Tipo de vinculación</label>
 
