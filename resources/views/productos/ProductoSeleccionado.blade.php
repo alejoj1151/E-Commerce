@@ -14,10 +14,11 @@
             </div>
             <div class="col-md-6">
                 <h2>{{$producto->nombre}}</h2>
-                <p class="h3">Descripcion</p>
+                <p class="h3">Descripcipn</p>
                 <p class="lead">
                     {{$producto->descripcion}}
                 </p>
+                <h3>${{number_format($producto->precio, 0, '.', ',')}} COP</h3>
                 <form class="form-group" method="POST" action="/carrito/{{$producto->id}}" enctype="multipart/form-data">
 
                     @csrf
