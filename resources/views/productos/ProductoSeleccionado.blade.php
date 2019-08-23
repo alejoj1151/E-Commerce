@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-6">
                 <h2>{{$producto->nombre}}</h2>
-                <p class="h3">Descripcipn</p>
+                <p class="h3">Descripcion</p>
                 <p class="lead">
                     {{$producto->descripcion}}
                 </p>
