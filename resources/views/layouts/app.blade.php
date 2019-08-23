@@ -51,8 +51,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     
                     @if (Auth::check())
+                    <!--  
                     <i class="fas fa-search" aria-hidden="true"></i>
-                    <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="¿Qué estás buscando?" aria-label="Search">
+                    <input name= "search" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="¿Qué estás buscando?" aria-label="Search"> - - -->
+                    {!! Form::open(['route' => 'productos.index','method'=> 'GET', 'class' => 'form-control mt-3 ml-1 mr-3 p-0']) !!}
+                            {!! Form::text('search', null, ['class' => 'form-control mb-0', 'placeholder'=>'¿Qué estás buscando?']) !!}
+                    {!! Form::close() !!}
                     @endif
                     
                     <!-- Right Side Of Navbar -->

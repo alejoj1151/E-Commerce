@@ -16,6 +16,10 @@ class ProductoController extends Controller
     {
         $request->user()->authorizeRoles(['comprador', 'administrador', 'vendedor']);
         $productos = Producto::where('estado','activo')->get(); // Lista de todos los productos
+        $nombre = $request->get('search');
+        $productos = Producto::orderBy('precio')
+            ->nombre($nombre)
+            ->paginate(9);
         return view('productos.index', compact('productos'));
     }
 

@@ -11,4 +11,11 @@ class Producto extends Model
     public function getRouteKeyName() {
         return 'slug';
     }
+
+    //Query Scopes
+	public function scopeNombre($query, $name)
+	{
+		if ($name)
+			return $query->where('nombre','LIKE',"%$name%");
+	}
 }
