@@ -52,7 +52,7 @@ class CarritoController extends Controller
         $user = auth()->user();
         $validacion = $resource -> validate([
             'cantidad' => 'integer|min:1',
-        ],['cantidad.min'    => 'Debe añadir almenos un elemento']);
+        ],['cantidad.min'    => 'La cantidad debe ser superior a 1']);
         if($producto = Producto::where('id', $id)->first()){
             $carrito = new Carrito();
             $carrito->IdProducto=$id;
