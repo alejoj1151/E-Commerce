@@ -15,11 +15,11 @@ class ProductoController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['comprador', 'administrador', 'vendedor']);
-        $productos = Producto::where('estado','activo')->get(); // Lista de todos los productos
         $nombre = $request->get('search');
         $productos = Producto::orderBy('precio')
-            ->nombre($nombre)
-            ->paginate(9);
+            ->nombre($nombre)              //busca por el nombre que se le ponga en el input search
+            ->estado()                     //muestra todos los productos activos
+            ->paginate(6);
         return view('productos.index', compact('productos'));
     }
 
@@ -136,9 +136,9 @@ class ProductoController extends Controller
         //
         $validacion = $request -> validate([
             'nombre' => 'required|string',
-            'precio' => 'required|integer',
+            'precio' => 'required|integer|min:0',
             'tipo' => 'required|in:Tecnologia,Ropa,Calzado,Hogar',
-            'stock' => 'required|integer',
+            'stock' => 'required|integer|min:0',
             'descripcion' => 'required'
         ]);
         

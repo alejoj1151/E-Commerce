@@ -13,9 +13,13 @@ class Producto extends Model
     }
 
     //Query Scopes
-	public function scopeNombre($query, $name)
+	public function scopeNombre($query, $nombre)
 	{
-		if ($name)
-			return $query->where('nombre','LIKE',"%$name%");
+		if ($nombre)
+			return $query->where('nombre','LIKE',"%$nombre%");
+	}
+	public function scopeEstado($query)
+	{
+		return $query->where('estado','activo');
 	}
 }
